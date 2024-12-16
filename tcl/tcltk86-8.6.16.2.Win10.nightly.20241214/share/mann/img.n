@@ -1,0 +1,572 @@
+'\"
+'\" Generated from file 'img\&.man' by tcllib/doctools with format 'nroff'
+'\" Copyright (c) 1995-2024 Jan Nijtmans <nijtmans@users\&.sourceforge\&.net>
+'\" Copyright (c) 2002-2024 Andreas Kupries <andreas_kupries@users\&.sourceforge\&.net>
+'\" Copyright (c) 2003-2024 Paul Obermeier <obermeier@users\&.sourceforge\&.net>
+'\"
+.TH "img" n 2\&.0 img "Img"
+.\" The -*- nroff -*- definitions below are for supplemental macros used
+.\" in Tcl/Tk manual entries.
+.\"
+.\" .AP type name in/out ?indent?
+.\"	Start paragraph describing an argument to a library procedure.
+.\"	type is type of argument (int, etc.), in/out is either "in", "out",
+.\"	or "in/out" to describe whether procedure reads or modifies arg,
+.\"	and indent is equivalent to second arg of .IP (shouldn't ever be
+.\"	needed;  use .AS below instead)
+.\"
+.\" .AS ?type? ?name?
+.\"	Give maximum sizes of arguments for setting tab stops.  Type and
+.\"	name are examples of largest possible arguments that will be passed
+.\"	to .AP later.  If args are omitted, default tab stops are used.
+.\"
+.\" .BS
+.\"	Start box enclosure.  From here until next .BE, everything will be
+.\"	enclosed in one large box.
+.\"
+.\" .BE
+.\"	End of box enclosure.
+.\"
+.\" .CS
+.\"	Begin code excerpt.
+.\"
+.\" .CE
+.\"	End code excerpt.
+.\"
+.\" .VS ?version? ?br?
+.\"	Begin vertical sidebar, for use in marking newly-changed parts
+.\"	of man pages.  The first argument is ignored and used for recording
+.\"	the version when the .VS was added, so that the sidebars can be
+.\"	found and removed when they reach a certain age.  If another argument
+.\"	is present, then a line break is forced before starting the sidebar.
+.\"
+.\" .VE
+.\"	End of vertical sidebar.
+.\"
+.\" .DS
+.\"	Begin an indented unfilled display.
+.\"
+.\" .DE
+.\"	End of indented unfilled display.
+.\"
+.\" .SO ?manpage?
+.\"	Start of list of standard options for a Tk widget. The manpage
+.\"	argument defines where to look up the standard options; if
+.\"	omitted, defaults to "options". The options follow on successive
+.\"	lines, in three columns separated by tabs.
+.\"
+.\" .SE
+.\"	End of list of standard options for a Tk widget.
+.\"
+.\" .OP cmdName dbName dbClass
+.\"	Start of description of a specific option.  cmdName gives the
+.\"	option's name as specified in the class command, dbName gives
+.\"	the option's name in the option database, and dbClass gives
+.\"	the option's class in the option database.
+.\"
+.\" .UL arg1 arg2
+.\"	Print arg1 underlined, then print arg2 normally.
+.\"
+.\" .QW arg1 ?arg2?
+.\"	Print arg1 in quotes, then arg2 normally (for trailing punctuation).
+.\"
+.\" .PQ arg1 ?arg2?
+.\"	Print an open parenthesis, arg1 in quotes, then arg2 normally
+.\"	(for trailing punctuation) and then a closing parenthesis.
+.\"
+.\"	# Set up traps and other miscellaneous stuff for Tcl/Tk man pages.
+.if t .wh -1.3i ^B
+.nr ^l \n(.l
+.ad b
+.\"	# Start an argument description
+.de AP
+.ie !"\\$4"" .TP \\$4
+.el \{\
+.   ie !"\\$2"" .TP \\n()Cu
+.   el          .TP 15
+.\}
+.ta \\n()Au \\n()Bu
+.ie !"\\$3"" \{\
+\&\\$1 \\fI\\$2\\fP (\\$3)
+.\".b
+.\}
+.el \{\
+.br
+.ie !"\\$2"" \{\
+\&\\$1	\\fI\\$2\\fP
+.\}
+.el \{\
+\&\\fI\\$1\\fP
+.\}
+.\}
+..
+.\"	# define tabbing values for .AP
+.de AS
+.nr )A 10n
+.if !"\\$1"" .nr )A \\w'\\$1'u+3n
+.nr )B \\n()Au+15n
+.\"
+.if !"\\$2"" .nr )B \\w'\\$2'u+\\n()Au+3n
+.nr )C \\n()Bu+\\w'(in/out)'u+2n
+..
+.AS Tcl_Interp Tcl_CreateInterp in/out
+.\"	# BS - start boxed text
+.\"	# ^y = starting y location
+.\"	# ^b = 1
+.de BS
+.br
+.mk ^y
+.nr ^b 1u
+.if n .nf
+.if n .ti 0
+.if n \l'\\n(.lu\(ul'
+.if n .fi
+..
+.\"	# BE - end boxed text (draw box now)
+.de BE
+.nf
+.ti 0
+.mk ^t
+.ie n \l'\\n(^lu\(ul'
+.el \{\
+.\"	Draw four-sided box normally, but don't draw top of
+.\"	box if the box started on an earlier page.
+.ie !\\n(^b-1 \{\
+\h'-1.5n'\L'|\\n(^yu-1v'\l'\\n(^lu+3n\(ul'\L'\\n(^tu+1v-\\n(^yu'\l'|0u-1.5n\(ul'
+.\}
+.el \}\
+\h'-1.5n'\L'|\\n(^yu-1v'\h'\\n(^lu+3n'\L'\\n(^tu+1v-\\n(^yu'\l'|0u-1.5n\(ul'
+.\}
+.\}
+.fi
+.br
+.nr ^b 0
+..
+.\"	# VS - start vertical sidebar
+.\"	# ^Y = starting y location
+.\"	# ^v = 1 (for troff;  for nroff this doesn't matter)
+.de VS
+.if !"\\$2"" .br
+.mk ^Y
+.ie n 'mc \s12\(br\s0
+.el .nr ^v 1u
+..
+.\"	# VE - end of vertical sidebar
+.de VE
+.ie n 'mc
+.el \{\
+.ev 2
+.nf
+.ti 0
+.mk ^t
+\h'|\\n(^lu+3n'\L'|\\n(^Yu-1v\(bv'\v'\\n(^tu+1v-\\n(^Yu'\h'-|\\n(^lu+3n'
+.sp -1
+.fi
+.ev
+.\}
+.nr ^v 0
+..
+.\"	# Special macro to handle page bottom:  finish off current
+.\"	# box/sidebar if in box/sidebar mode, then invoked standard
+.\"	# page bottom macro.
+.de ^B
+.ev 2
+'ti 0
+'nf
+.mk ^t
+.if \\n(^b \{\
+.\"	Draw three-sided box if this is the box's first page,
+.\"	draw two sides but no top otherwise.
+.ie !\\n(^b-1 \h'-1.5n'\L'|\\n(^yu-1v'\l'\\n(^lu+3n\(ul'\L'\\n(^tu+1v-\\n(^yu'\h'|0u'\c
+.el \h'-1.5n'\L'|\\n(^yu-1v'\h'\\n(^lu+3n'\L'\\n(^tu+1v-\\n(^yu'\h'|0u'\c
+.\}
+.if \\n(^v \{\
+.nr ^x \\n(^tu+1v-\\n(^Yu
+\kx\h'-\\nxu'\h'|\\n(^lu+3n'\ky\L'-\\n(^xu'\v'\\n(^xu'\h'|0u'\c
+.\}
+.bp
+'fi
+.ev
+.if \\n(^b \{\
+.mk ^y
+.nr ^b 2
+.\}
+.if \\n(^v \{\
+.mk ^Y
+.\}
+..
+.\"	# DS - begin display
+.de DS
+.RS
+.nf
+.sp
+..
+.\"	# DE - end display
+.de DE
+.fi
+.RE
+.sp
+..
+.\"	# SO - start of list of standard options
+.de SO
+'ie '\\$1'' .ds So \\fBoptions\\fR
+'el .ds So \\fB\\$1\\fR
+.SH "STANDARD OPTIONS"
+.LP
+.nf
+.ta 5.5c 11c
+.ft B
+..
+.\"	# SE - end of list of standard options
+.de SE
+.fi
+.ft R
+.LP
+See the \\*(So manual entry for details on the standard options.
+..
+.\"	# OP - start of full description for a single option
+.de OP
+.LP
+.nf
+.ta 4c
+Command-Line Name:	\\fB\\$1\\fR
+Database Name:	\\fB\\$2\\fR
+Database Class:	\\fB\\$3\\fR
+.fi
+.IP
+..
+.\"	# CS - begin code excerpt
+.de CS
+.RS
+.nf
+.ta .25i .5i .75i 1i
+..
+.\"	# CE - end code excerpt
+.de CE
+.fi
+.RE
+..
+.\"	# UL - underline word
+.de UL
+\\$1\l'|0\(ul'\\$2
+..
+.\"	# QW - apply quotation marks to word
+.de QW
+.ie '\\*(lq'"' ``\\$1''\\$2
+.\"" fix emacs highlighting
+.el \\*(lq\\$1\\*(rq\\$2
+..
+.\"	# PQ - apply parens and quotation marks to word
+.de PQ
+.ie '\\*(lq'"' (``\\$1''\\$2)\\$3
+.\"" fix emacs highlighting
+.el (\\*(lq\\$1\\*(rq\\$2)\\$3
+..
+.\"	# QR - quoted range
+.de QR
+.ie '\\*(lq'"' ``\\$1''\\-``\\$2''\\$3
+.\"" fix emacs highlighting
+.el \\*(lq\\$1\\*(rq\\-\\*(lq\\$2\\*(rq\\$3
+..
+.\"	# MT - "empty" string
+.de MT
+.QW ""
+..
+.BS
+.SH NAME
+img \- Introduction to Img
+.SH SYNOPSIS
+package require \fBImg ?2\&.0?\fR
+.sp
+.BE
+.SH DESCRIPTION
+\fBImg\fR is a collection of format handlers for the \fBTk\fR \fIphoto\fR [https://www\&.tcl\&.tk/man/tcl9\&.0/TkCmd/photo\&.html] image type\&.
+.PP
+Sources and binaries of \fBImg\fR are available at \fISourceForge\fR [https://sourceforge\&.net/projects/tkimg/]\&.
+.PP
+The individual formats are described in more detail on their own pages\&.
+.TP
+\fIbmp\fR
+Windows bitmap format\&.
+See \fBimg-bmp\fR\&.
+.TP
+\fIdted*\fR
+Digital Terrain Elevation Data format\&.
+See \fBimg-dted\fR\&.
+.TP
+\fIflir*\fR
+FLIR FPF Public Image format\&.
+See \fBimg-flir\fR\&.
+.TP
+\fIgif*\fR
+Graphics Interchange Format\&.
+See \fBimg-gif\fR\&.
+.TP
+\fIico\fR
+Windows icon format\&.
+See \fBimg-ico\fR\&.
+.TP
+\fIjpeg\fR
+Joint Picture Experts Group format\&.
+See \fBimg-jpeg\fR\&.
+.TP
+\fIpcx\fR
+Paintbrush format\&.
+See \fBimg-pcx\fR\&.
+.TP
+\fIpixmap\fR
+Pixmap image type\&.
+While the other formats are handlers for the \fBTk\fR photo image
+type, this is a new image type for \fBTk\fR\&.
+See \fBimg-pixmap\fR\&.
+.TP
+\fIpng\fR
+Portable Network Graphics format\&.
+See \fBimg-png\fR\&.
+.TP
+\fIppm\fR
+Portable pixmap format\&.
+See \fBimg-ppm\fR\&.
+.TP
+\fIps*\fR
+Postscript and PDF format\&.
+Requires an external application, \fBghostview\fR for its operation\&.
+See \fBimg-ps\fR\&.
+.TP
+\fIraw*\fR
+Raw data format\&.
+See \fBimg-raw\fR\&.
+.TP
+\fIsgi\fR
+Silicon Graphics format\&.
+See \fBimg-sgi\fR\&.
+.TP
+\fIsun\fR
+Sun raster format\&.
+See \fBimg-sun\fR\&.
+.TP
+\fItga\fR
+Truevision Targa format\&.
+See \fBimg-tga\fR\&.
+.TP
+\fItiff\fR
+Tagged Image File Format\&.
+See \fBimg-tiff\fR\&.
+.TP
+\fIwindow\fR
+Tk window as photo image\&.
+See \fBimg-window\fR\&.
+.TP
+\fIxbm\fR
+X Windows Bitmap format\&.
+See \fBimg-xbm\fR\&.
+.TP
+\fIxpm\fR
+X Windows Pixmap format\&.
+See \fBimg-xpm\fR\&.
+.PP
+.SH NOTES
+.IP [1]
+\fBImg\fR version 2 only works with Tcl/Tk 8\&.6 or newer\&.
+If using an older Tcl/Tk version, use the lastest \fBImg\fR 1\&.4 version\&.
+.IP [2]
+Formats marked with \fI*\fR are \fInot\fR loaded when doing a
+\fBpackage require Img\fR, but must be loaded explicitly via
+\fBpackage require img::FORMAT\fR\&.
+.PP
+.SH "MULTI-PAGE IMAGES"
+Some image formats support storage of multiple pages in a file\&.
+.PP
+Supported by formats \fBimg-gif\fR, \fBimg-ico\fR, \fBimg-ps\fR, \fBimg-tiff\fR\&.
+.PP
+A specific page can be extracted using the \fB-index\fR option\&.
+Index \fB0\fR specifies the first page\&.
+.PP
+There is currently no support for writing multi-page images\&.
+.PP
+The number of pages of an image file can either be retrieved using metadata key \fInumpages\fR
+(see chapter \fBImage Metadata\fR) or by checking different \fB-index\fR values\&.
+.PP
+For example, GIF images can have multiple pages in one file\&.
+The metadata dictionary key \fInumpages\fR is not supported for GIF images,
+as this property cannot be extracted fast\&.
+.PP
+If you need to know the number of pages, use code like in the following example:
+.CS
+
+
+ proc CheckIndex { fileName fmt ind } {
+     set retVal [catch {image create photo -file $fileName -format "$fmt -index $ind"} phImg]
+     if { $retVal == 0 } {
+         image delete $phImg
+         return true
+     }
+     return false
+ }
+
+ proc GetNumPages { fileName fmt } {
+     if { [CheckIndex $fileName $fmt 1] } {
+         set ind 5
+         while { [CheckIndex $fileName $fmt $ind] } {
+             incr ind 5
+         }
+         incr ind -1
+         while { ! [CheckIndex $fileName $fmt $ind] } {
+             incr ind -1
+         }
+         return [expr { $ind + 1 }]
+     }
+     return 1
+ }
+
+ # Determine the number of pages of an animated GIF\&.
+ set numPages [GetNumPages $imgFile "gif"]
+
+.CE
+.SH "IMAGE METADATA"
+Some image formats support an individual set of metadata dictionary keys\&.
+See the \fBTk\fR \fIphoto\fR [https://www\&.tcl\&.tk/man/tcl9\&.0/TkCmd/photo\&.html] image command for more information regarding image metadata\&.
+.PP
+This support is enabled, if \fBImg\fR is linked against \fBTk\fR 8\&.7 or newer\&.
+.PP
+The following keys are supported:
+.TP
+\fIDPI\fR
+Horizontal image resolution in dots per inch as double value\&.
+.sp
+Supported by formats \fBimg-bmp\fR, \fBimg-jpeg\fR, \fBimg-pcx\fR, \fBimg-png\fR, \fBimg-tiff\fR\&.
+.TP
+\fIaspect\fR
+Aspect ratio defined as horizontal size divided by vertical size as double value\&.
+.sp
+Supported by formats \fBimg-bmp\fR, \fBimg-jpeg\fR, \fBimg-pcx\fR, \fBimg-png\fR, \fBimg-tiff\fR\&.
+.TP
+\fInumpages\fR
+The number of pages in an image file\&.
+.sp
+Supported by formats \fBimg-ico\fR, \fBimg-tiff\fR\&.
+.PP
+All formats supporting image resolution (\fIDPI\fR and \fIaspect\fR)
+have the following format options for writing these values without explicitly setting the metadata dictionary:
+.PP
+\fB-resolution\fR \fB-xresolution\fR \fB-yresolution\fR\&.
+.IP [1]
+Option \fB-resolution\fR allows specifying both horizontal and vertical resolution values\&.
+.IP [2]
+If not using option \fB-resolution\fR, options \fB-xresolution\fR and \fB-yresolution\fR must both be specified\&.
+Otherwise no resolution information is written\&.
+.IP [3]
+Resolution values specified with any of the above options overwrite the corresponding metadata dictionary values\&.
+.IP [4]
+The  resolution values can be specified as double values as documented with function
+\fITk_GetPixels\fR [https://www\&.tcl\&.tk/man/tcl9\&.0/TkLib/GetPixels\&.html]\&.
+.PP
+Example resolution specifications:
+.CS
+
+
+1\&.0: 1 inch
+1i : 1 inch
+1c : 1 centimeter
+1m : 1 millimeter
+1p : 1 point
+
+
+.CE
+Example writing PNG image with horizontal resolution of 300 inches and vertical resolution of 200 centimeters:
+.CS
+
+
+img write out\&.png -format {png -resolution 300i 200c}
+
+.CE
+.SH "VALUE MAPPING"
+Some image formats support pixel values greater than storable in 8-bit integers\&.
+.IP \(bu
+The following formats support 16-bit integer pixel values: \fBimg-dted\fR, \fBimg-ppm\fR\&.
+.IP \(bu
+The following formats support floating point pixel values: \fBimg-flir\fR, \fBimg-raw\fR\&.
+.PP
+To map these values to 8-bit integer values as needed for a Tk photo, two different algorithms
+are implemented in Img:
+.PP
+A simple \fIMinMax\fR algorithm and an advanced \fIAutomatic Gain Control (AGC)\fR algorithm
+using histogram equalization\&.
+.PP
+The default for all supported formats is to use the \fIMinMax\fR algorithm, which determines
+the minimum and maximum values of the image automatically\&.
+.SH "MATCHING ORDER"
+When reading images without specifying the format (using option \fB-format\fR),
+the match functions of the available formats are tried in reversed order as registered\&.
+So, the handlers of the Img package are called before the handlers of the Tk core\&.
+The Tk core registers the following handlers: GIF, PNG, PPM, SVG, DEFAULT\&.
+.PP
+In Tk 8\&.7 a new format handler structure (\fBTk_PhotoImageFormatVersion3\fR) was introduced
+to handle the new metadata information\&.
+All old handlers (\fBTk_PhotoImageFormat\fR) are called before calling the new Format3 handlers\&.
+.PP
+See manual page of function \fITk_CreatePhotoImageFormat\fR [https://www\&.tcl\&.tk/man/tcl9\&.0/TkLib/CrtPhImgFmt\&.html]
+for a detailed description of the handler struture and matching functions\&.
+.PP
+The resulting matching order is best explained by an example:
+.CS
+
+
+package require Tk
+package require Img
+package require img::raw     \fI(Format2 Img handler)\fR
+
+.CE
+Note, that the \fBpackage require Img\fR command actually calls the following statements:
+.CS
+
+
+package require img::window  \fI(Format2 Img handler)\fR
+package require img::tga     \fI(Format2 Img handler)\fR
+package require img::ico     \fI(Format3 Img handler)\fR
+package require img::pcx     \fI(Format3 Img handler)\fR
+package require img::sgi     \fI(Format2 Img handler)\fR
+package require img::sun     \fI(Format2 Img handler)\fR
+package require img::xbm     \fI(Format2 Img handler)\fR
+package require img::xpm     \fI(Format2 Img handler)\fR
+package require img::jpeg    \fI(Format3 Img handler)\fR
+package require img::png     \fI(Format3 Img handler)\fR
+package require img::tiff    \fI(Format3 Img handler)\fR
+package require img::bmp     \fI(Format3 Img handler)\fR
+package require img::ppm     \fI(Format2 Img handler)\fR
+
+.CE
+The order of calling the match functions is therefore as follows:
+.CS
+
+
+Match format raw       \fI(Format2 Img handler)\fR
+Match format ppm       \fI(Format2 Img handler)\fR
+Match format xpm       \fI(Format2 Img handler)\fR
+Match format xbm       \fI(Format2 Img handler)\fR
+Match format sun       \fI(Format2 Img handler)\fR
+Match format sgi       \fI(Format2 Img handler)\fR
+Match format tga       \fI(Format2 Img handler)\fR
+Match format window    \fI(Format2 Img handler)\fR
+Match format svg       \fI(Format2 Tk handler)\fR
+Match format ppm       \fI(Format2 Tk handler)\fR
+Match format default   \fI(Format2 Tk handler)\fR
+Match format bmp       \fI(Format3 Img handler)\fR
+Match format tiff      \fI(Format3 Img handler)\fR
+Match format png       \fI(Format3 Img handler)\fR
+Match format jpeg      \fI(Format3 Img handler)\fR
+Match format pcx       \fI(Format3 Img handler)\fR
+Match format ico       \fI(Format3 Img handler)\fR
+Match format png       \fI(Format3 Tk handler)\fR
+Match format gif       \fI(Format3 Tk handler)\fR
+
+.CE
+.SH "SEE ALSO"
+img, img-bmp, img-dted, img-flir, img-gif, img-ico, img-jpeg, img-pcx, img-pixmap, img-png, img-ppm, img-ps, img-raw, img-sgi, img-sun, img-tga, img-tiff, img-window, img-xbm, img-xpm
+.SH COPYRIGHT
+.nf
+Copyright (c) 1995-2024 Jan Nijtmans <nijtmans@users\&.sourceforge\&.net>
+Copyright (c) 2002-2024 Andreas Kupries <andreas_kupries@users\&.sourceforge\&.net>
+Copyright (c) 2003-2024 Paul Obermeier <obermeier@users\&.sourceforge\&.net>
+
+.fi

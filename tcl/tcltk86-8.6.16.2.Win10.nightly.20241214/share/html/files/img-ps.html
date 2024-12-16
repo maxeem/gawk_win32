@@ -1,0 +1,208 @@
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>img-ps - Img</title>
+<style type="text/css"><!--
+    HTML {
+	background: 	#FFFFFF;
+	color: 		black;
+    }
+    BODY {
+	background: 	#FFFFFF;
+	color:	 	black;
+    }
+    DIV.doctools {
+	margin-left:	10%;
+	margin-right:	10%;
+    }
+    DIV.doctools H1,DIV.doctools H2 {
+	margin-left:	-5%;
+    }
+    H1, H2, H3, H4 {
+	margin-top: 	1em;
+	font-family:	sans-serif;
+	font-size:	large;
+	color:		#005A9C;
+	background: 	transparent;
+	text-align:		left;
+    }
+    H1.doctools_title {
+	text-align: center;
+    }
+    UL,OL {
+	margin-right: 0em;
+	margin-top: 3pt;
+	margin-bottom: 3pt;
+    }
+    UL LI {
+	list-style: disc;
+    }
+    OL LI {
+	list-style: decimal;
+    }
+    DT {
+	padding-top: 	1ex;
+    }
+    UL.doctools_toc,UL.doctools_toc UL, UL.doctools_toc UL UL {
+	font:		normal 12pt/14pt sans-serif;
+	list-style:	none;
+    }
+    LI.doctools_section, LI.doctools_subsection {
+	list-style: 	none;
+	margin-left: 	0em;
+	text-indent:	0em;
+	padding: 	0em;
+    }
+    PRE {
+	display: 	block;
+	font-family:	monospace;
+	white-space:	pre;
+	margin:		0%;
+	padding-top:	0.5ex;
+	padding-bottom:	0.5ex;
+	padding-left:	1ex;
+	padding-right:	1ex;
+	width:		100%;
+    }
+    PRE.doctools_example {
+	color: 		black;
+	background: 	#f5dcb3;
+	border:		1px solid black;
+    }
+    UL.doctools_requirements LI, UL.doctools_syntax LI {
+	list-style: 	none;
+	margin-left: 	0em;
+	text-indent:	0em;
+	padding:	0em;
+    }
+    DIV.doctools_synopsis {
+	color: 		black;
+	background: 	#80ffff;
+	border:		1px solid black;
+	font-family:	serif;
+	margin-top: 	1em;
+	margin-bottom: 	1em;
+    }
+    UL.doctools_syntax {
+	margin-top: 	1em;
+	border-top:	1px solid black;
+    }
+    UL.doctools_requirements {
+	margin-bottom: 	1em;
+	border-bottom:	1px solid black;
+    }
+--></style>
+</head>
+<!-- Generated from file 'img-ps.man' by tcllib/doctools with format 'html'
+   -->
+<!-- Copyright &amp;copy; 1995-2024 Jan Nijtmans &amp;lt;nijtmans@users.sourceforge.net&amp;gt;   -- Copyright &amp;copy; 2002-2024 Andreas Kupries &amp;lt;andreas_kupries@users.sourceforge.net&amp;gt;   -- Copyright &amp;copy; 2003-2024 Paul Obermeier &amp;lt;obermeier@users.sourceforge.net&amp;gt;
+   -->
+<!-- img-ps.n
+   -->
+<body><hr> [
+   <a href="../toc.html">Table Of Contents</a>
+ ] <hr>
+<div class="doctools">
+<h1 class="doctools_title">img-ps(n) 2.0 doc &quot;Img&quot;</h1>
+<div id="name" class="doctools_section"><h2><a name="name">Name</a></h2>
+<p>img-ps - PostScript and PDF format (ps)</p>
+</div>
+<div id="toc" class="doctools_section"><h2><a name="toc">Table Of Contents</a></h2>
+<ul class="doctools_toc">
+<li class="doctools_section"><a href="#toc">Table Of Contents</a></li>
+<li class="doctools_section"><a href="#synopsis">Synopsis</a></li>
+<li class="doctools_section"><a href="#section1">Description</a></li>
+<li class="doctools_section"><a href="#section2">Notes</a></li>
+<li class="doctools_section"><a href="#section3">Options</a></li>
+<li class="doctools_section"><a href="#see-also">See Also</a></li>
+<li class="doctools_section"><a href="#copyright">Copyright</a></li>
+</ul>
+</div>
+<div id="synopsis" class="doctools_section"><h2><a name="synopsis">Synopsis</a></h2>
+<div class="doctools_synopsis">
+<ul class="doctools_requirements">
+<li>package require <b class="pkgname">img::ps <span class="opt">?2.0?</span></b></li>
+</ul>
+</div>
+</div>
+<div id="section1" class="doctools_section"><h2><a name="section1">Description</a></h2>
+<p><b class="cmd">package require img::ps</b></p>
+<p>Like all packages of <b class="package"><a href="img.html">Img</a></b> it does <em>not</em> provide new
+commands, but extends the existing <b class="package">Tk</b> command <b class="cmd">image</b>, so
+that it supports files containing raster images in the
+PostScript and PDF format (ps). More specifically
+<b class="package">img::ps</b> extends <b class="package">Tk</b>'s
+<a href="https://www.tcl.tk/man/tcl9.0/TkCmd/photo.html">photo</a> image type.</p>
+<p>The name of the new format handler is <b class="const">ps</b>.
+This handler provides new additional configuration options. See
+section <span class="sectref"><a href="#section3">Options</a></span> for more detailed explanations.</p>
+<p>Note that this package provides a <b class="const">pdf</b> handler too, i.e. a
+handler for the Adobe Portable Document Format. That handler accepts
+the same options as the <b class="const">ps</b> handler.</p>
+<p>The package delegates the actual conversion of data in PostScript and
+PDF format into a raster image to the GhostScript application. 
+It therefore depends upon the presence of program <b class="syscmd">gs</b> on Unix
+and <b class="syscmd">gswin64c.exe</b> in environment variable <b class="cmd">PATH</b>
+and is non-functional, if GhostScript is not installed.</p>
+<p>All of the above means that in a call like</p>
+<dl class="doctools_definitions">
+<b class="cmd">image</b> <b class="method">create photo</b> <span class="opt">?<i class="arg">name</i>?</span> <span class="opt">?<i class="arg">options</i>?</span>
+</dl>
+<ol class="doctools_enumerated">
+<li><p>Image data in PostScript and PDF format (options <b class="option">-data</b>
+and <b class="option">-file</b>) is detected automatically.</p></li>
+<li><p>The format names <b class="const">ps</b> and <b class="const">pdf</b> are
+recognized by the option <b class="option">-format</b>.</p></li>
+</ol>
+<p>In addition the value for the option is treated as list and may
+contain any of the special options listed in section <span class="sectref"><a href="#section3">Options</a></span>.</p>
+<p>The package <b class="package">img::ps</b> is <em>not</em> loaded when doing a
+<b class="cmd">package require Img</b>, but must be loaded explicitly via
+<b class="cmd">package require img::ps</b>.</p>
+</div>
+<div id="section2" class="doctools_section"><h2><a name="section2">Notes</a></h2>
+<ol class="doctools_enumerated">
+<li><p>This format handler only supports read functionality.</p></li>
+<li><p>Chapter <em>Multi-page Images</em> of of the <b class="package"><a href="img.html">Img</a></b> manual page
+describes the handling of images with multiple pages.</p></li>
+<li><p>This format handler only supports a limited number of file types:</p>
+<ul class="doctools_itemized">
+<li><p>PostScript files must have keyword <em>%%BoundingBox</em> in the file header.
+The syntax <em>%%BoundingBox (atend)</em> is not supported.</p></li>
+<li><p>PDF files are assumed to be of size DIN A4. 
+It is recommend to use a specialized PDF extension like
+<a href="https://sourceforge.net/projects/irrational-numbers/files/tclMuPDF-2.x/">tclMuPDF</a>.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div id="section3" class="doctools_section"><h2><a name="section3">Options</a></h2>
+<p>The handler provides the following options:</p>
+<dl class="doctools_definitions">
+<dt><b class="option">-verbose</b> <i class="arg">bool</i></dt>
+<dd><p>Available since version 2.0.</p>
+<p>If set to <b class="const">true</b>, additional information about the read image
+is printed to stdout. Default is <b class="const">false</b>.</p></dd>
+<dt><b class="option">-index</b> <i class="arg">integer</i></dt>
+<dd><p>Available since version 1.2.4.</p>
+<p>Read the page at specified index. The first page is at index <b class="const">0</b>.
+Default is <b class="const">0</b>.</p></dd>
+<dt><b class="option">-zoom</b> <i class="arg">x</i> <span class="opt">?<i class="arg">y</i>?</span></dt>
+<dd><p>Available since version 1.2.4.</p>
+<p>Scale image by specified double values. 
+If <i class="arg">y</i> is not specified, it is set to the value of <i class="arg">x</i>.
+Default is <b class="const">1.0</b>.</p></dd>
+<dt><b class="option">-gs</b> <i class="arg">string</i></dt>
+<dd><p>Available since version 2.0.</p>
+<p>Specify the GhostScript executable program as absolute path.</p></dd>
+</dl>
+</div>
+<div id="see-also" class="doctools_section"><h2><a name="see-also">See Also</a></h2>
+<p><a href="img.html">img</a>, <a href="img-bmp.html">img-bmp</a>, <a href="img-dted.html">img-dted</a>, <a href="img-flir.html">img-flir</a>, <a href="img-gif.html">img-gif</a>, <a href="img-ico.html">img-ico</a>, <a href="img-jpeg.html">img-jpeg</a>, <a href="img-pcx.html">img-pcx</a>, <a href="img-pixmap.html">img-pixmap</a>, <a href="img-png.html">img-png</a>, <a href="img-ppm.html">img-ppm</a>, img-ps, <a href="img-raw.html">img-raw</a>, <a href="img-sgi.html">img-sgi</a>, <a href="img-sun.html">img-sun</a>, <a href="img-tga.html">img-tga</a>, <a href="img-tiff.html">img-tiff</a>, <a href="img-window.html">img-window</a>, <a href="img-xbm.html">img-xbm</a>, <a href="img-xpm.html">img-xpm</a></p>
+</div>
+<div id="copyright" class="doctools_section"><h2><a name="copyright">Copyright</a></h2>
+<p>Copyright &copy; 1995-2024 Jan Nijtmans &lt;nijtmans@users.sourceforge.net&gt;<br>
+Copyright &copy; 2002-2024 Andreas Kupries &lt;andreas_kupries@users.sourceforge.net&gt;<br>
+Copyright &copy; 2003-2024 Paul Obermeier &lt;obermeier@users.sourceforge.net&gt;</p>
+</div>
+</div></body></html>

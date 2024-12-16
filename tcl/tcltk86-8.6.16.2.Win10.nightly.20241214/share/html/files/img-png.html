@@ -1,0 +1,215 @@
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>img-png - Img</title>
+<style type="text/css"><!--
+    HTML {
+	background: 	#FFFFFF;
+	color: 		black;
+    }
+    BODY {
+	background: 	#FFFFFF;
+	color:	 	black;
+    }
+    DIV.doctools {
+	margin-left:	10%;
+	margin-right:	10%;
+    }
+    DIV.doctools H1,DIV.doctools H2 {
+	margin-left:	-5%;
+    }
+    H1, H2, H3, H4 {
+	margin-top: 	1em;
+	font-family:	sans-serif;
+	font-size:	large;
+	color:		#005A9C;
+	background: 	transparent;
+	text-align:		left;
+    }
+    H1.doctools_title {
+	text-align: center;
+    }
+    UL,OL {
+	margin-right: 0em;
+	margin-top: 3pt;
+	margin-bottom: 3pt;
+    }
+    UL LI {
+	list-style: disc;
+    }
+    OL LI {
+	list-style: decimal;
+    }
+    DT {
+	padding-top: 	1ex;
+    }
+    UL.doctools_toc,UL.doctools_toc UL, UL.doctools_toc UL UL {
+	font:		normal 12pt/14pt sans-serif;
+	list-style:	none;
+    }
+    LI.doctools_section, LI.doctools_subsection {
+	list-style: 	none;
+	margin-left: 	0em;
+	text-indent:	0em;
+	padding: 	0em;
+    }
+    PRE {
+	display: 	block;
+	font-family:	monospace;
+	white-space:	pre;
+	margin:		0%;
+	padding-top:	0.5ex;
+	padding-bottom:	0.5ex;
+	padding-left:	1ex;
+	padding-right:	1ex;
+	width:		100%;
+    }
+    PRE.doctools_example {
+	color: 		black;
+	background: 	#f5dcb3;
+	border:		1px solid black;
+    }
+    UL.doctools_requirements LI, UL.doctools_syntax LI {
+	list-style: 	none;
+	margin-left: 	0em;
+	text-indent:	0em;
+	padding:	0em;
+    }
+    DIV.doctools_synopsis {
+	color: 		black;
+	background: 	#80ffff;
+	border:		1px solid black;
+	font-family:	serif;
+	margin-top: 	1em;
+	margin-bottom: 	1em;
+    }
+    UL.doctools_syntax {
+	margin-top: 	1em;
+	border-top:	1px solid black;
+    }
+    UL.doctools_requirements {
+	margin-bottom: 	1em;
+	border-bottom:	1px solid black;
+    }
+--></style>
+</head>
+<!-- Generated from file 'img-png.man' by tcllib/doctools with format 'html'
+   -->
+<!-- Copyright &amp;copy; 1995-2024 Jan Nijtmans &amp;lt;nijtmans@users.sourceforge.net&amp;gt;   -- Copyright &amp;copy; 2002-2024 Andreas Kupries &amp;lt;andreas_kupries@users.sourceforge.net&amp;gt;   -- Copyright &amp;copy; 2003-2024 Paul Obermeier &amp;lt;obermeier@users.sourceforge.net&amp;gt;
+   -->
+<!-- img-png.n
+   -->
+<body><hr> [
+   <a href="../toc.html">Table Of Contents</a>
+ ] <hr>
+<div class="doctools">
+<h1 class="doctools_title">img-png(n) 2.0 doc &quot;Img&quot;</h1>
+<div id="name" class="doctools_section"><h2><a name="name">Name</a></h2>
+<p>img-png - Portable Network Graphics format (png)</p>
+</div>
+<div id="toc" class="doctools_section"><h2><a name="toc">Table Of Contents</a></h2>
+<ul class="doctools_toc">
+<li class="doctools_section"><a href="#toc">Table Of Contents</a></li>
+<li class="doctools_section"><a href="#synopsis">Synopsis</a></li>
+<li class="doctools_section"><a href="#section1">Description</a></li>
+<li class="doctools_section"><a href="#section2">Notes</a></li>
+<li class="doctools_section"><a href="#section3">Options</a></li>
+<li class="doctools_section"><a href="#see-also">See Also</a></li>
+<li class="doctools_section"><a href="#copyright">Copyright</a></li>
+</ul>
+</div>
+<div id="synopsis" class="doctools_section"><h2><a name="synopsis">Synopsis</a></h2>
+<div class="doctools_synopsis">
+<ul class="doctools_requirements">
+<li>package require <b class="pkgname">img::png <span class="opt">?2.0?</span></b></li>
+</ul>
+</div>
+</div>
+<div id="section1" class="doctools_section"><h2><a name="section1">Description</a></h2>
+<p><b class="cmd">package require img::png</b></p>
+<p>Like all packages of <b class="package"><a href="img.html">Img</a></b> it does <em>not</em> provide new
+commands, but extends the existing <b class="package">Tk</b> command <b class="cmd">image</b>, so
+that it supports files containing raster images in the
+Portable Network Graphics format (png). More specifically
+<b class="package">img::png</b> extends <b class="package">Tk</b>'s
+<a href="https://www.tcl.tk/man/tcl9.0/TkCmd/photo.html">photo</a> image type.</p>
+<p>The name of the new format handler is <b class="const">png</b>.
+This handler provides new additional configuration options. See
+section <span class="sectref"><a href="#section3">Options</a></span> for more detailed explanations.</p>
+<p>All of the above means that in a call like</p>
+<dl class="doctools_definitions">
+<b class="cmd">image</b> <b class="method">create photo</b> <span class="opt">?<i class="arg">name</i>?</span> <span class="opt">?<i class="arg">options</i>?</span>
+</dl>
+<ol class="doctools_enumerated">
+<li><p>Image data in png format (options <b class="option">-data</b> and <b class="option">-file</b>) is
+detected automatically.</p></li>
+<li><p>The format name <b class="const">png</b> is recognized by the option <b class="option">-format</b>.</p></li>
+</ol>
+<p>In addition the value of option <b class="option">-format</b> is treated as a list and may
+contain any of the special options listed in section <span class="sectref"><a href="#section3">Options</a></span>.</p>
+<p>The package <b class="package">img::png</b> is a sub-package of
+<b class="package"><a href="img.html">Img</a></b>. It can be loaded as a part of the complete Img support,
+via <b class="cmd">package require Img</b>, or on its own, via
+<b class="cmd">package require img::png</b>.</p>
+</div>
+<div id="section2" class="doctools_section"><h2><a name="section2">Notes</a></h2>
+<ol class="doctools_enumerated">
+<li><p>Chapter <em>Image Metadata</em> of the <b class="package"><a href="img.html">Img</a></b> manual page
+describes the parameters of the resolution related options.</p></li>
+</ol>
+</div>
+<div id="section3" class="doctools_section"><h2><a name="section3">Options</a></h2>
+<p>The handler provides the following options:</p>
+<dl class="doctools_definitions">
+<dt><b class="option">-verbose</b> <i class="arg">bool</i></dt>
+<dd><p>This option is supported for reading and writing. Available since version 1.4.6.</p>
+<p>If set to <b class="const">true</b>, additional information about the read or written image
+is printed to stdout. Default is <b class="const">false</b>.</p></dd>
+<dt><b class="option">-alpha</b> <i class="arg">double</i></dt>
+<dd><p>This option is supported for reading only. Available since version 1.4.2.</p>
+<p>An additional alpha filtering value for the overall image, which
+allows the background on which the image is displayed to show through.
+This usually also has the effect of desaturating the image.
+The alpha value must be between 0.0 and 1.0.
+Specifying an alpha value, overrides the setting of the <b class="option">-withalpha</b> flag,
+i.e. reading a file which has no alpha channel (Grayscale, RGB) will
+add an alpha channel to the image independent of the <b class="option">-withalpha</b> flag setting.</p></dd>
+<dt><b class="option">-gamma</b> <i class="arg">double</i></dt>
+<dd><p>This option is supported for reading only. Available since version 1.4.6.</p>
+<p>Use the specified gamma value when reading an image.
+This option overwrites gamma values specified in the file.
+If this option is not specified and no gamma value is in the file,
+a default value of 1.0 is used.</p></dd>
+<dt><b class="option">-withalpha</b> <i class="arg">bool</i></dt>
+<dd><p>This option is supported for reading and writing. Available since version 1.4.1.</p>
+<p>If set to <b class="const">false</b>, an alpha channel is ignored
+during reading or writing. Default is <b class="const">true</b>.</p>
+<p><em>Note:</em> This option was named <b class="option">-matte</b> in previous versions and is still recognized.</p></dd>
+<dt><b class="option">-resolution</b> <i class="arg">xres</i> <span class="opt">?<i class="arg">yres</i>?</span></dt>
+<dd><p>This option is supported for writing only. Available since version 2.0.</p>
+<p>Set the resolution values of the written image file.
+If <i class="arg">yres</i> is not specified, it is set to the value of <i class="arg">xres</i>.</p>
+<p>If option is not specified, the <em>DPI</em> and <em>aspect</em> values of the metadata dictionary are written.
+If no metadata values are available, no resolution values are written.</p></dd>
+<dt><b class="option">-xresolution</b> <i class="arg">xres</i></dt>
+<dd><p>This option is supported for writing only. Available since version 2.0.</p>
+<p>Set the horizontal resolution value of the written image file.</p></dd>
+<dt><b class="option">-yresolution</b> <i class="arg">yres</i></dt>
+<dd><p>This option is supported for writing only. Available since version 2.0.</p>
+<p>Set the vertical resolution value of the written image file.</p></dd>
+<dt><b class="option">-tag</b> <i class="arg">key</i> <i class="arg">value</i></dt>
+<dd><p>This option is supported for writing only. Available since version 2.0.</p>
+<p>Each key-value pair will be written as a named text chunk where the key provides
+the name of the chunk and the value its contents. 
+Currently the maximum number of <b class="option">-tag</b> specifications are 10.</p></dd>
+</dl>
+</div>
+<div id="see-also" class="doctools_section"><h2><a name="see-also">See Also</a></h2>
+<p><a href="img.html">img</a>, <a href="img-bmp.html">img-bmp</a>, <a href="img-dted.html">img-dted</a>, <a href="img-flir.html">img-flir</a>, <a href="img-gif.html">img-gif</a>, <a href="img-ico.html">img-ico</a>, <a href="img-jpeg.html">img-jpeg</a>, <a href="img-pcx.html">img-pcx</a>, <a href="img-pixmap.html">img-pixmap</a>, img-png, <a href="img-ppm.html">img-ppm</a>, <a href="img-ps.html">img-ps</a>, <a href="img-raw.html">img-raw</a>, <a href="img-sgi.html">img-sgi</a>, <a href="img-sun.html">img-sun</a>, <a href="img-tga.html">img-tga</a>, <a href="img-tiff.html">img-tiff</a>, <a href="img-window.html">img-window</a>, <a href="img-xbm.html">img-xbm</a>, <a href="img-xpm.html">img-xpm</a></p>
+</div>
+<div id="copyright" class="doctools_section"><h2><a name="copyright">Copyright</a></h2>
+<p>Copyright &copy; 1995-2024 Jan Nijtmans &lt;nijtmans@users.sourceforge.net&gt;<br>
+Copyright &copy; 2002-2024 Andreas Kupries &lt;andreas_kupries@users.sourceforge.net&gt;<br>
+Copyright &copy; 2003-2024 Paul Obermeier &lt;obermeier@users.sourceforge.net&gt;</p>
+</div>
+</div></body></html>
